@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Services - Innovaro Global Services</title>
+    <meta name="description" content="Explore comprehensive IT services including Software Management, Business Analysis, Project Management, AI, Cybersecurity, and more from Innovaro Global Services.">
+    <meta name="keywords" content="IT services, software management, business analysis, project management, AI, cybersecurity, cloud computing, Nigeria">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="assets/images/logo.png">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo">
+                    <a href="index.html" style="text-decoration: none; color: inherit;">
+                        <img src="assets/images/logo.png" alt="">
+                        Innovaro Global Services
+                    </a>
+                </div>
+                
+                <ul class="nav-menu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="services.html" class="active">Services</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="faqs.html">FAQs</a></li>
+                    <li id="dashboardNav" style="display: none;"><a href="dashboard.html">Dashboard</a></li>
+                    <li id="logoutNav" style="display: none;"><a href="#" onclick="logout()">Logout</a></li>
+                </ul>
+                
+                <div class="nav-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                
+                <div class="auth-buttons" id="authButtons">
+                    <a href="login.html" class="btn btn-secondary">Login</a>
+                    <a href="register.html" class="btn btn-primary">Sign Up</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Page Header -->
+        <section class="hero" style="padding: 100px 0;">
+            <div class="container">
+                <div class="hero-content">
+                    <h1>Our Services</h1>
+                    <p class="slogan">Comprehensive IT Solutions for Your Business Success</p>
+                    <p style="font-size: 1.2rem; margin-top: 2rem; max-width: 800px; margin-left: auto; margin-right: auto;">
+                        From core business services to cutting-edge technology solutions, we provide everything you need to thrive in the digital age.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Core Services Section -->
+        <section class="section">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Core Services</h2>
+                    <p>Essential services that form the foundation of your digital transformation</p>
+                </div>
+                
+                <div class="row" id="coreServicesContainer">
+                    <!-- Core services will be loaded here via JavaScript -->
+                    <div class="col-12 text-center">
+                        <i class="fas fa-spinner fa-spin text-gold" style="font-size: 2rem;"></i>
+                        <p>Loading core services...</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- IT Innovation Solutions Section -->
+        <section class="section section-alt">
+            <div class="container">
+                <div class="section-title">
+                    <h2>IT Innovation Solutions Development</h2>
+                    <p>Cutting-edge technology solutions for forward-thinking businesses</p>
+                </div>
+                
+                <div class="row" id="innovationServicesContainer">
+                    <!-- Innovation services will be loaded here via JavaScript -->
+                    <div class="col-12 text-center">
+                        <i class="fas fa-spinner fa-spin text-gold" style="font-size: 2rem;"></i>
+                        <p>Loading innovation services...</p>
+                    </div>
+                </div>
+                
+                <div class="text-center mt-4">
+                    <a href="contact.html" class="btn btn-primary btn-lg">
+                        <i class="fas fa-lightbulb mr-2"></i>Learn About Innovation Solutions
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- IT Training Section -->
+        <section class="section">
+            <div class="container">
+                <div class="section-title">
+                    <h2>IT Training Programs</h2>
+                    <p>Professional training to enhance your team's technical capabilities</p>
+                </div>
+                
+                <div class="row" id="trainingServicesContainer">
+                    <!-- Training services will be loaded here via JavaScript -->
+                    <div class="col-12 text-center">
+                        <i class="fas fa-spinner fa-spin text-gold" style="font-size: 2rem;"></i>
+                        <p>Loading training programs...</p>
+                    </div>
+                </div>
+                
+                <div class="text-center mt-4">
+                    <a href="contact.html" class="btn btn-primary btn-lg">
+                        <i class="fas fa-graduation-cap mr-2"></i>Enroll in Training Programs
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- IT Consulting Section -->
+        <section class="section section-alt">
+            <div class="container">
+                <div class="section-title">
+                    <h2>IT Consulting Services</h2>
+                    <p>Expert guidance for your digital transformation journey</p>
+                </div>
+                
+                <div class="row" id="consultingServicesContainer">
+                    <!-- Consulting services will be loaded here via JavaScript -->
+                    <div class="col-12 text-center">
+                        <i class="fas fa-spinner fa-spin text-gold" style="font-size: 2rem;"></i>
+                        <p>Loading consulting services...</p>
+                    </div>
+                </div>
+                
+                <div class="text-center mt-4">
+                    <a href="contact.html" class="btn btn-primary btn-lg">
+                        <i class="fas fa-handshake mr-2"></i>Get Consulting Services
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Additional Services Section -->
+        <section class="section">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Additional Technology Services</h2>
+                    <p>Specialized solutions to meet your unique business needs</p>
+                </div>
+                
+                <div class="row" id="additionalServicesContainer">
+                    <!-- Additional services will be loaded here via JavaScript -->
+                    <div class="col-12 text-center">
+                        <i class="fas fa-spinner fa-spin text-gold" style="font-size: 2rem;"></i>
+                        <p>Loading additional services...</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Service Categories Navigation -->
+        <section class="section section-alt">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Explore by Category</h2>
+                    <p>Navigate to specific service areas that interest you most</p>
+                </div>
+                
+                <div class="row">
+                    <div class="col-3">
+                        <div class="card text-center">
+                            <div class="card-body">
+                                <div class="icon text-gold mb-3">
+                                    <i class="fas fa-lightbulb" style="font-size: 3rem;"></i>
+                                </div>
+                                <h4>Innovation Solutions</h4>
+                                <p>Cutting-edge IT solutions for digital transformation</p>
+                                <a href="contact.html" class="btn btn-outline">Get Info</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="card text-center">
+                            <div class="card-body">
+                                <div class="icon text-gold mb-3">
+                                    <i class="fas fa-graduation-cap" style="font-size: 3rem;"></i>
+                                </div>
+                                <h4>Training Programs</h4>
+                                <p>Professional IT training for skill development</p>
+                                <a href="contact.html" class="btn btn-outline">Enroll</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="card text-center">
+                            <div class="card-body">
+                                <div class="icon text-gold mb-3">
+                                    <i class="fas fa-handshake" style="font-size: 3rem;"></i>
+                                </div>
+                                <h4>Consulting Services</h4>
+                                <p>Expert guidance and strategic IT consulting</p>
+                                <a href="contact.html" class="btn btn-outline">Get Quote</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="card text-center">
+                            <div class="card-body">
+                                <div class="icon text-gold mb-3">
+                                    <i class="fas fa-cogs" style="font-size: 3rem;"></i>
+                                </div>
+                                <h4>Custom Solutions</h4>
+                                <p>Tailored services for your specific requirements</p>
+                                <a href="contact.html" class="btn btn-outline">Discuss</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Call to Action Section -->
+        <section class="section" style="background: linear-gradient(135deg, #1E40AF 0%, #3B82F6 100%); color: white;">
+            <div class="container text-center">
+                <h2 style="color: white;">Ready to Get Started?</h2>
+                <p style="font-size: 1.2rem; margin-bottom: 2rem; color: #FCD34D;">
+                    Choose the services that best fit your needs and begin your digital transformation today.
+                </p>
+                <div class="hero-actions">
+                    <a href="contact.html" class="btn btn-primary btn-lg mr-3">
+                        <i class="fas fa-envelope mr-2"></i>Request Consultation
+                    </a>
+                    <a href="register.html" class="btn btn-secondary btn-lg" id="ctaSecondaryButton">
+                        <i class="fas fa-user-plus mr-2"></i>Create Account
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Innovaro Global Services</h3>
+                    <p>Delivering Business and Software Solutions with Precision and Passion. We are your trusted partner in digital transformation.</p>
+                    <p><strong>Pioneering IT solutions for the digital future.</strong></p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <a href="index.html">Home</a>
+                    <a href="about.html">About Us</a>
+                    <a href="services.html">Services</a>
+                    <a href="contact.html">Contact</a>
+                    <a href="faqs.html">FAQs</a>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Services</h3>
+                    <a href="services.html">Software Management</a>
+                    <a href="services.html">Business Analysis</a>
+                    <a href="services.html">Project Management</a>
+                    <a href="services.html">IT Training</a>
+                    <a href="services.html">IT Consulting</a>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <ul class="contact-info">
+                        <li><i class="fas fa-map-marker-alt"></i> 35 Bonny Street, Port Harcourt, Rivers State</li>
+                        <li><i class="fas fa-envelope"></i> igs@innovaro.com.ng</li>
+                        <li><i class="fas fa-phone"></i> +234 805 336 7426</li>
+                        <li><i class="fas fa-phone"></i> +234 806 161 5760</li>
+                        <li><i class="fas fa-globe"></i> www.innovaro.com.ng</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 Innovaro Global Services. All rights reserved. | Designed and Developed by Innovaro Global Services</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="js/main.js"></script>
+    <script>
+        // Load page content when DOM is ready
+        document.addEventListener('DOMContentLoaded', function() {
+            checkAuthStatus();
+            loadServicesPageContent();
+        });
+
+        // Load all services for the services page
+        function loadServicesPageContent() {
+            loadServicesByCategory('core', 'coreServicesContainer');
+            loadServicesByCategory('innovation', 'innovationServicesContainer');
+            loadServicesByCategory('training', 'trainingServicesContainer');
+            loadServicesByCategory('consulting', 'consultingServicesContainer');
+            loadServicesByCategory('additional', 'additionalServicesContainer');
+        }
+
+        // Load services by category
+        function loadServicesByCategory(category, containerId) {
+            fetch(`api/services.php?category=${category}`)
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    renderServicesInContainer(data.services, containerId, category);
+                } else {
+                    showErrorInContainer(containerId);
+                }
+            })
+            .catch(error => {
+                console.error(`Error loading ${category} services:`, error);
+                showErrorInContainer(containerId);
+            });
+        }
+
+        // Render services in specific container
+        function renderServicesInContainer(services, containerId, category) {
+            const container = document.getElementById(containerId);
+            if (!container) return;
+            
+            container.innerHTML = '';
+            
+            if (services.length === 0) {
+                container.innerHTML = `
+                    <div class="col-12 text-center">
+                        <p>No ${category} services available at the moment.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            services.forEach(service => {
+                const colClass = category === 'core' || category === 'additional' ? 'col-4' : 'col-6';
+                const serviceHtml = `
+                    <div class="${colClass}">
+                        <div class="card">
+                            <div class="card-header ${category === 'core' || category === 'additional' ? 'text-center' : ''}">
+                                <div class="icon">
+                                    <i class="${service.icon}"></i>
+                                </div>
+                                <h${category === 'additional' ? '4' : '3'}>${escapeHtml(service.title)}</h${category === 'additional' ? '4' : '3'}>
+                            </div>
+                            <div class="card-body">
+                                <p>${category === 'additional' ? truncateText(escapeHtml(service.description), 120) : escapeHtml(service.description)}</p>
+                            </div>
+                            <div class="card-footer">
+                                <button class="btn btn-primary ${category === 'additional' ? 'btn-sm' : ''}" onclick="checkAuthAndEnroll(${service.id})">
+                                    <i class="fas fa-plus mr-2"></i>${category === 'additional' ? 'Enroll' : 'Enroll Now'}
+                                </button>
+                                ${category !== 'additional' ? '' : `<a href="service-detail.html?id=${service.id}" class="btn btn-outline btn-sm ml-1">Details</a>`}
+                            </div>
+                        </div>
+                    </div>
+                `;
+                container.insertAdjacentHTML('beforeend', serviceHtml);
+            });
+        }
+
+        // Show error message in container
+        function showErrorInContainer(containerId) {
+            const container = document.getElementById(containerId);
+            if (!container) return;
+            
+            container.innerHTML = `
+                <div class="col-12 text-center">
+                    <i class="fas fa-exclamation-triangle text-gold" style="font-size: 2rem;"></i>
+                    <p>Unable to load services. Please try again later.</p>
+                </div>
+            `;
+        }
+
+        // Update CTA button based on auth status
+        function updateCtaButton(isLoggedIn) {
+            const ctaButton = document.getElementById('ctaSecondaryButton');
+            if (ctaButton) {
+                if (isLoggedIn) {
+                    ctaButton.innerHTML = '<i class="fas fa-tachometer-alt mr-2"></i>Go to Dashboard';
+                    ctaButton.href = 'dashboard.html';
+                } else {
+                    ctaButton.innerHTML = '<i class="fas fa-user-plus mr-2"></i>Create Account';
+                    ctaButton.href = 'register.html';
+                }
+            }
+        }
+
+        // Override the updateNavigationForLoggedInUser function to also update CTA
+        const originalUpdateNavForLoggedIn = updateNavigationForLoggedInUser;
+        updateNavigationForLoggedInUser = function(user) {
+            originalUpdateNavForLoggedIn(user);
+            updateCtaButton(true);
+        };
+
+        const originalUpdateNavForGuest = updateNavigationForGuestUser;
+        updateNavigationForGuestUser = function() {
+            originalUpdateNavForGuest();
+            updateCtaButton(false);
+        };
+    </script>
+</body>
+</html>

@@ -70,10 +70,10 @@ function initNavigation() {
     });
 
     // Active navigation highlighting
-    const currentPage = window.location.pathname.split('/').pop() || 'index.php';
+    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
     navLinks.forEach(link => {
         const linkPage = link.getAttribute('href').split('/').pop();
-        if (linkPage === currentPage || (currentPage === '' && linkPage === 'index.php')) {
+        if (linkPage === currentPage || (currentPage === '' && linkPage === 'index.html')) {
             link.classList.add('active');
         }
     });
@@ -215,7 +215,7 @@ function validateAndSubmitContactForm() {
     });
 
     if (isFormValid) {
-        submitForm(form, 'php/contact.php');
+        submitContactForm(form);
     }
 }
 
@@ -234,7 +234,7 @@ function validateAndSubmitLoginForm() {
     });
 
     if (isFormValid) {
-        submitForm(form, 'php/login.php');
+        submitLoginForm(form);
     }
 }
 
@@ -253,7 +253,7 @@ function validateAndSubmitRegisterForm() {
     });
 
     if (isFormValid) {
-        submitForm(form, 'php/register.php');
+        submitRegisterForm(form);
     }
 }
 
@@ -437,12 +437,16 @@ function enrollInService(serviceId) {
         return;
     }
 
-    const data = new FormData();
-    data.append('service_id', serviceId);
+    const data = {
+        service_id: serviceId
+    };
 
-    fetch('php/enroll.php', {
+    fetch('api/enroll.php', {
         method: 'POST',
-        body: data
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
     })
     .then(response => response.json())
     .then(data => {
@@ -605,4 +609,330 @@ function throttle(func, limit) {
             setTimeout(() => inThrottle = false, limit);
         }
     };
+}
+
+/**
+ * Authentication and API Functions
+ */
+
+// Check authentication status
+function checkAuthStatus() {
+    fetch('api/auth_status.php')
+    .then(response => response.json())
+    .then(data => {
+        if (data.success && data.isLoggedIn) {
+            updateNavigationForLoggedInUser(data.user);
+        } else {
+            updateNavigationForGuestUser();
+        }
+    })
+    .catch(error => {
+        console.error('Error checking auth status:', error);
+        updateNavigationForGuestUser();
+    });
+}
+
+// Update navigation for logged in user
+function updateNavigationForLoggedInUser(user) {
+    const authButtons = document.getElementById('authButtons');
+    const dashboardNav = document.getElementById('dashboardNav');
+    const logoutNav = document.getElementById('logoutNav');
+    
+    if (authButtons) {
+        authButtons.innerHTML = `<span class="text-gold">Welcome, ${escapeHtml(user.name)}!</span>`;
+    }
+    
+    if (dashboardNav) dashboardNav.style.display = 'block';
+    if (logoutNav) logoutNav.style.display = 'block';
+}
+
+// Update navigation for guest user
+function updateNavigationForGuestUser() {
+    const authButtons = document.getElementById('authButtons');
+    const dashboardNav = document.getElementById('dashboardNav');
+    const logoutNav = document.getElementById('logoutNav');
+    
+    if (authButtons) {
+        authButtons.innerHTML = `
+            <a href="login.html" class="btn btn-secondary">Login</a>
+            <a href="register.html" class="btn btn-primary">Sign Up</a>
+        `;
+    }
+    
+    if (dashboardNav) dashboardNav.style.display = 'none';
+    if (logoutNav) logoutNav.style.display = 'none';
+}
+
+// Submit login form
+function submitLoginForm(form) {
+    const formData = new FormData(form);
+    const data = {
+        email: formData.get('email'),
+        password: formData.get('password')
+    };
+    
+    const submitBtn = form.querySelector('button[type="submit"]');
+    const originalBtnText = submitBtn.textContent;
+    
+    submitBtn.textContent = 'Signing In...';
+    submitBtn.disabled = true;
+    
+    fetch('api/login.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            showAlert('success', data.message);
+            setTimeout(() => {
+                window.location.href = 'dashboard.html';
+            }, 1500);
+        } else {
+            showAlert('error', data.message);
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        showAlert('error', 'An error occurred. Please try again.');
+    })
+    .finally(() => {
+        submitBtn.textContent = originalBtnText;
+        submitBtn.disabled = false;
+    });
+}
+
+// Submit register form
+function submitRegisterForm(form) {
+    const formData = new FormData(form);
+    const data = {
+        name: formData.get('name'),
+        email: formData.get('email'),
+        password: formData.get('password'),
+        confirm_password: formData.get('confirm_password'),
+        role: formData.get('role') || 'client'
+    };
+    
+    const submitBtn = form.querySelector('button[type="submit"]');
+    const originalBtnText = submitBtn.textContent;
+    
+    submitBtn.textContent = 'Creating Account...';
+    submitBtn.disabled = true;
+    
+    fetch('api/register.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            showAlert('success', data.message);
+            setTimeout(() => {
+                window.location.href = 'login.html';
+            }, 2000);
+        } else {
+            showAlert('error', data.message);
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        showAlert('error', 'An error occurred. Please try again.');
+    })
+    .finally(() => {
+        submitBtn.textContent = originalBtnText;
+        submitBtn.disabled = false;
+    });
+}
+
+// Submit contact form
+function submitContactForm(form) {
+    const formData = new FormData(form);
+    const data = {
+        name: formData.get('name'),
+        email: formData.get('email'),
+        message: formData.get('message')
+    };
+    
+    const submitBtn = form.querySelector('button[type="submit"]');
+    const originalBtnText = submitBtn.textContent;
+    
+    submitBtn.textContent = 'Sending...';
+    submitBtn.disabled = true;
+    
+    fetch('api/save_inquiry.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            showAlert('success', data.message);
+            form.reset();
+        } else {
+            showAlert('error', data.message);
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        showAlert('error', 'An error occurred. Please try again.');
+    })
+    .finally(() => {
+        submitBtn.textContent = originalBtnText;
+        submitBtn.disabled = false;
+    });
+}
+
+// Logout function
+function logout() {
+    if (!confirm('Are you sure you want to logout?')) {
+        return;
+    }
+    
+    fetch('api/logout.php', {
+        method: 'POST'
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            showAlert('success', 'Logged out successfully');
+            setTimeout(() => {
+                window.location.href = 'index.html';
+            }, 1000);
+        } else {
+            showAlert('error', 'Logout failed');
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        showAlert('error', 'An error occurred during logout');
+    });
+}
+
+// Load services for home page
+function loadHomePageServices() {
+    // Load core services
+    fetch('api/services.php?category=core')
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            renderCoreServices(data.services);
+        }
+    })
+    .catch(error => {
+        console.error('Error loading core services:', error);
+    });
+    
+    // Load additional services (limited to 6)
+    fetch('api/services.php?category=additional&limit=6')
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            renderAdditionalServices(data.services);
+        }
+    })
+    .catch(error => {
+        console.error('Error loading additional services:', error);
+    });
+}
+
+// Render core services
+function renderCoreServices(services) {
+    const container = document.getElementById('coreServicesContainer');
+    if (!container) return;
+    
+    container.innerHTML = '';
+    
+    services.forEach(service => {
+        const serviceHtml = `
+            <div class="col-4">
+                <div class="card">
+                    <div class="card-header text-center">
+                        <div class="icon">
+                            <i class="${service.icon}"></i>
+                        </div>
+                        <h3>${escapeHtml(service.title)}</h3>
+                    </div>
+                    <div class="card-body">
+                        <p>${escapeHtml(service.description)}</p>
+                    </div>
+                    <div class="card-footer">
+                        <button class="btn btn-primary" onclick="checkAuthAndEnroll(${service.id})">
+                            Enroll Now
+                        </button>
+                    </div>
+                </div>
+            </div>
+        `;
+        container.insertAdjacentHTML('beforeend', serviceHtml);
+    });
+}
+
+// Render additional services
+function renderAdditionalServices(services) {
+    const container = document.getElementById('additionalServicesContainer');
+    if (!container) return;
+    
+    container.innerHTML = '';
+    
+    services.forEach(service => {
+        const serviceHtml = `
+            <div class="col-4">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="icon">
+                            <i class="${service.icon}"></i>
+                        </div>
+                        <h4>${escapeHtml(service.title)}</h4>
+                    </div>
+                    <div class="card-body">
+                        <p>${truncateText(escapeHtml(service.description), 120)}</p>
+                    </div>
+                </div>
+            </div>
+        `;
+        container.insertAdjacentHTML('beforeend', serviceHtml);
+    });
+}
+
+// Check authentication before enrollment
+function checkAuthAndEnroll(serviceId) {
+    fetch('api/auth_status.php')
+    .then(response => response.json())
+    .then(data => {
+        if (data.success && data.isLoggedIn) {
+            enrollInService(serviceId);
+        } else {
+            if (confirm('You need to be logged in to enroll. Would you like to go to the login page?')) {
+                window.location.href = 'login.html';
+            }
+        }
+    })
+    .catch(error => {
+        console.error('Error checking auth status:', error);
+        showAlert('error', 'Unable to check authentication status');
+    });
+}
+
+// Utility function to escape HTML
+function escapeHtml(text) {
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+}
+
+// Utility function to truncate text
+function truncateText(text, length) {
+    if (text.length <= length) {
+        return text;
+    }
+    return text.substring(0, length) + '...';
 }

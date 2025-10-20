@@ -114,6 +114,9 @@ header {
     color: #F59E0B;
 }
 
+.logo img {
+    height: 35px;
+}
 .nav-menu {
     display: flex;
     list-style: none;
@@ -154,7 +157,7 @@ header {
 }
 
 .btn {
-    padding: 0.75rem 1.5rem;
+    padding: 0.2rem .5rem;
     border-radius: 5px;
     border: none;
     cursor: pointer;

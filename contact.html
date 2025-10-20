@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Innovaro Global Services</title>
+    <meta name="description" content="Get in touch with Innovaro Global Services. Contact us for IT consulting, training programs, project inquiries, and technical support.">
+    <meta name="keywords" content="contact, IT support, consulting, inquiry, Innovaro Global Services, Nigeria">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="assets/images/logo.png">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo">
+                    <a href="index.html" style="text-decoration: none; color: inherit;">
+                        <img src="assets/images/logo.png" alt="">
+                        Innovaro Global Services
+                    </a>
+                </div>
+                
+                <ul class="nav-menu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="contact.html" class="active">Contact</a></li>
+                    <li><a href="faqs.html">FAQs</a></li>
+                    <li id="dashboardNav" style="display: none;"><a href="dashboard.html">Dashboard</a></li>
+                    <li id="logoutNav" style="display: none;"><a href="#" onclick="logout()">Logout</a></li>
+                </ul>
+                
+                <div class="nav-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                
+                <div class="auth-buttons" id="authButtons">
+                    <a href="login.html" class="btn btn-secondary">Login</a>
+                    <a href="register.html" class="btn btn-primary">Sign Up</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Page Header -->
+        <section class="hero" style="padding: 100px 0;">
+            <div class="container">
+                <div class="hero-content">
+                    <h1>Contact Us</h1>
+                    <p class="slogan">Let's Start Your Digital Transformation Journey</p>
+                    <p style="font-size: 1.2rem; margin-top: 2rem; max-width: 800px; margin-left: auto; margin-right: auto;">
+                        Ready to take your business to the next level? Get in touch with our team of experts and discover how we can help you achieve your goals.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Form Section -->
+        <section class="section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-6">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3><i class="fas fa-envelope text-gold mr-2"></i>Send us a Message</h3>
+                                <p>Fill out the form below and we'll get back to you within 24 hours.</p>
+                            </div>
+                            <div class="card-body">
+                                <!-- Flash Messages Container -->
+                                <div id="alertContainer"></div>
+
+                                <form id="contactForm">
+                                    <div class="form-group">
+                                        <label for="name">
+                                            <i class="fas fa-user mr-2"></i>Full Name *
+                                        </label>
+                                        <input type="text" id="name" name="name" class="form-control" required
+                                               placeholder="Enter your full name">
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label for="email">
+                                            <i class="fas fa-envelope mr-2"></i>Email Address *
+                                        </label>
+                                        <input type="email" id="email" name="email" class="form-control" required
+                                               placeholder="Enter your email address">
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label for="subject">
+                                            <i class="fas fa-tag mr-2"></i>Subject
+                                        </label>
+                                        <select id="subject" name="subject" class="form-control">
+                                            <option value="">Select a subject</option>
+                                            <option value="General Inquiry">General Inquiry</option>
+                                            <option value="Training Programs">Training Programs</option>
+                                            <option value="Consulting Services">Consulting Services</option>
+                                            <option value="Technical Support">Technical Support</option>
+                                            <option value="Partnership">Partnership Opportunities</option>
+                                            <option value="Other">Other</option>
+                                        </select>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label for="message">
+                                            <i class="fas fa-comment mr-2"></i>Message *
+                                        </label>
+                                        <textarea id="message" name="message" class="form-control" rows="6" required
+                                                  placeholder="Tell us about your project, requirements, or questions..."></textarea>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label class="d-flex align-items-center">
+                                            <input type="checkbox" name="newsletter" style="margin-right: 0.5rem;">
+                                            Subscribe to our newsletter for updates on new services and industry insights
+                                        </label>
+                                    </div>
+                                    
+                                    <button type="submit" class="btn btn-primary btn-lg" style="width: 100%;">
+                                        <i class="fas fa-paper-plane mr-2"></i>Send Message
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-6">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3><i class="fas fa-info-circle text-gold mr-2"></i>Contact Information</h3>
+                                <p>Reach out to us through any of the following channels.</p>
+                            </div>
+                            <div class="card-body">
+                                <div class="contact-item mb-4">
+                                    <div class="d-flex align-items-center">
+                                        <div class="icon text-gold mr-3">
+                                            <i class="fas fa-map-marker-alt" style="font-size: 1.5rem;"></i>
+                                        </div>
+                                        <div>
+                                            <h5>Our Office</h5>
+                                            <p>35 Bonny Street<br>
+                                            Port Harcourt, Rivers State<br>
+                                            Nigeria</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="contact-item mb-4">
+                                    <div class="d-flex align-items-center">
+                                        <div class="icon text-gold mr-3">
+                                            <i class="fas fa-phone" style="font-size: 1.5rem;"></i>
+                                        </div>
+                                        <div>
+                                            <h5>Phone Numbers</h5>
+                                            <p><a href="tel:+2348053367426">+234 805 336 7426</a><br>
+                                            <a href="tel:+2348061615760">+234 806 161 5760</a></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="contact-item mb-4">
+                                    <div class="d-flex align-items-center">
+                                        <div class="icon text-gold mr-3">
+                                            <i class="fas fa-envelope" style="font-size: 1.5rem;"></i>
+                                        </div>
+                                        <div>
+                                            <h5>Email Address</h5>
+                                            <p><a href="mailto:igs@innovaro.com.ng">igs@innovaro.com.ng</a></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="contact-item mb-4">
+                                    <div class="d-flex align-items-center">
+                                        <div class="icon text-gold mr-3">
+                                            <i class="fas fa-globe" style="font-size: 1.5rem;"></i>
+                                        </div>
+                                        <div>
+                                            <h5>Website</h5>
+                                            <p><a href="https://www.innovaro.com.ng" target="_blank">www.innovaro.com.ng</a></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="contact-item">
+                                    <h5 class="text-dark-blue mb-3">Business Hours</h5>
+                                    <ul style="list-style: none; padding: 0;">
+                                        <li><strong>Monday - Friday:</strong> 8:00 AM - 6:00 PM</li>
+                                        <li><strong>Saturday:</strong> 9:00 AM - 4:00 PM</li>
+                                        <li><strong>Sunday:</strong> Closed</li>
+                                        <li><strong>Emergency Support:</strong> 24/7 Available</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Why Choose Us Section -->
+        <section class="section section-alt">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Why Choose Innovaro Global Services?</h2>
+                    <p>What makes us your ideal technology partner</p>
+                </div>
+                
+                <div class="row">
+                    <div class="col-4">
+                        <div class="card text-center">
+                            <div class="card-body">
+                                <div class="icon text-gold mb-3">
+                                    <i class="fas fa-clock" style="font-size: 2.5rem;"></i>
+                                </div>
+                                <h5>Fast Response</h5>
+                                <p>We respond to all inquiries within 24 hours and provide immediate support for urgent matters.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="card text-center">
+                            <div class="card-body">
+                                <div class="icon text-gold mb-3">
+                                    <i class="fas fa-users" style="font-size: 2.5rem;"></i>
+                                </div>
+                                <h5>Expert Team</h5>
+                                <p>Our experienced professionals bring years of expertise in IT solutions, training, and consulting.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="card text-center">
+                            <div class="card-body">
+                                <div class="icon text-gold mb-3">
+                                    <i class="fas fa-handshake" style="font-size: 2.5rem;"></i>
+                                </div>
+                                <h5>Personalized Service</h5>
+                                <p>We tailor our solutions to meet your specific needs and provide ongoing support throughout your journey.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Alternative Contact Methods -->
+        <section class="section">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Other Ways to Connect</h2>
+                    <p>Choose the method that works best for you</p>
+                </div>
+                
+                <div class="row">
+                    <div class="col-4">
+                        <div class="card text-center">
+                            <div class="card-body">
+                                <div class="icon text-gold mb-3">
+                                    <i class="fas fa-calendar-check" style="font-size: 2.5rem;"></i>
+                                </div>
+                                <h5>Schedule a Consultation</h5>
+                                <p>Book a free 30-minute consultation to discuss your project requirements and get expert advice.</p>
+                                <a href="#" class="btn btn-outline" onclick="scheduleConsultation()">Book Now</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="card text-center">
+                            <div class="card-body">
+                                <div class="icon text-gold mb-3">
+                                    <i class="fas fa-question-circle" style="font-size: 2.5rem;"></i>
+                                </div>
+                                <h5>Browse FAQs</h5>
+                                <p>Find quick answers to commonly asked questions about our services, pricing, and processes.</p>
+                                <a href="faqs.html" class="btn btn-outline">View FAQs</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="card text-center">
+                            <div class="card-body">
+                                <div class="icon text-gold mb-3">
+                                    <i class="fas fa-user-plus" style="font-size: 2.5rem;"></i>
+                                </div>
+                                <h5>Create an Account</h5>
+                                <p>Join our platform to access training programs, track progress, and get priority support.</p>
+                                <a href="register.html" class="btn btn-outline" id="accountButton">Sign Up</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Call to Action Section -->
+        <section class="section" style="background: linear-gradient(135deg, #1E40AF 0%, #3B82F6 100%); color: white;">
+            <div class="container text-center">
+                <h2 style="color: white;">Ready to Transform Your Business?</h2>
+                <p style="font-size: 1.2rem; margin-bottom: 2rem; color: #FCD34D;">
+                    Don't wait any longer. Contact us today and let's discuss how we can help you achieve your digital transformation goals.
+                </p>
+                <div class="hero-actions">
+                    <a href="tel:+2348053367426" class="btn btn-primary btn-lg mr-3">
+                        <i class="fas fa-phone mr-2"></i>Call Now
+                    </a>
+                    <a href="services.html" class="btn btn-secondary btn-lg">
+                        <i class="fas fa-eye mr-2"></i>View Services
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Innovaro Global Services</h3>
+                    <p>Delivering Business and Software Solutions with Precision and Passion. We are your trusted partner in digital transformation.</p>
+                    <p><strong>Pioneering IT solutions for the digital future.</strong></p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <a href="index.html">Home</a>
+                    <a href="about.html">About Us</a>
+                    <a href="services.html">Services</a>
+                    <a href="contact.html">Contact</a>
+                    <a href="faqs.html">FAQs</a>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Services</h3>
+                    <a href="services.html">Software Management</a>
+                    <a href="services.html">Business Analysis</a>
+                    <a href="services.html">Project Management</a>
+                    <a href="services.html">IT Training</a>
+                    <a href="services.html">IT Consulting</a>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <ul class="contact-info">
+                        <li><i class="fas fa-map-marker-alt"></i> 35 Bonny Street, Port Harcourt, Rivers State</li>
+                        <li><i class="fas fa-envelope"></i> igs@innovaro.com.ng</li>
+                        <li><i class="fas fa-phone"></i> +234 805 336 7426</li>
+                        <li><i class="fas fa-phone"></i> +234 806 161 5760</li>
+                        <li><i class="fas fa-globe"></i> www.innovaro.com.ng</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 Innovaro Global Services. All rights reserved. | Designed and Developed by Innovaro Global Services</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="js/main.js"></script>
+    <script>
+        // Load page content when DOM is ready
+        document.addEventListener('DOMContentLoaded', function() {
+            checkAuthStatus();
+            updateAccountButton();
+        });
+
+        // Update account button based on auth status
+        function updateAccountButton() {
+            fetch('api/auth_status.php')
+            .then(response => response.json())
+            .then(data => {
+                const accountButton = document.getElementById('accountButton');
+                if (accountButton) {
+                    if (data.success && data.isLoggedIn) {
+                        accountButton.textContent = 'Go to Dashboard';
+                        accountButton.href = 'dashboard.html';
+                    } else {
+                        accountButton.textContent = 'Sign Up';
+                        accountButton.href = 'register.html';
+                    }
+                }
+            })
+            .catch(error => {
+                console.error('Error checking auth status:', error);
+            });
+        }
+
+        // Schedule consultation placeholder function
+        function scheduleConsultation() {
+            alert('Consultation scheduling feature coming soon! Please contact us directly at +234 805 336 7426 or igs@innovaro.com.ng to schedule your consultation.');
+        }
+
+        // Auto-fill form if user is logged in
+        function autoFillUserInfo(user) {
+            const nameField = document.getElementById('name');
+            const emailField = document.getElementById('email');
+            
+            if (nameField && user.name) {
+                nameField.value = user.name;
+            }
+            if (emailField && user.email) {
+                emailField.value = user.email;
+            }
+        }
+
+        // Override the updateNavigationForLoggedInUser function to also auto-fill form
+        const originalUpdateNavForLoggedIn = updateNavigationForLoggedInUser;
+        if (typeof updateNavigationForLoggedInUser === 'function') {
+            updateNavigationForLoggedInUser = function(user) {
+                originalUpdateNavForLoggedIn(user);
+                autoFillUserInfo(user);
+                updateAccountButton();
+            };
+        }
+    </script>
+</body>
+</html>

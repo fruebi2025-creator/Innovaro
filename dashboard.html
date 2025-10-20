@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Innovaro Global Services</title>
+    <meta name="description" content="Manage your Innovaro Global Services account, view enrolled services, track your progress, and access your personalized content.">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="assets/images/logo.png">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo">
+                    <a href="index.html" style="text-decoration: none; color: inherit;">
+                        <img src="assets/images/logo.png" alt="">
+                        Innovaro Global Services
+                    </a>
+                </div>
+                
+                <ul class="nav-menu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="faqs.html">FAQs</a></li>
+                    <li><a href="dashboard.html" class="active">Dashboard</a></li>
+                    <li><a href="#" onclick="logout()">Logout</a></li>
+                </ul>
+                
+                <div class="nav-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                
+                <div class="auth-buttons" id="authButtons">
+                    <span class="text-gold">Loading...</span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Dashboard Header -->
+        <section class="hero" style="padding: 100px 0 60px 0;">
+            <div class="container">
+                <div class="hero-content">
+                    <h1><i class="fas fa-tachometer-alt mr-3"></i>My Dashboard</h1>
+                    <p class="slogan">Manage Your Learning Journey</p>
+                    <p style="font-size: 1.1rem; margin-top: 1rem;" id="welcomeMessage">
+                        Loading your dashboard...
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Stats -->
+        <section class="section" style="padding-top: 0;">
+            <div class="container">
+                <div class="row" id="statsContainer">
+                    <!-- Stats will be loaded here -->
+                    <div class="col-12 text-center">
+                        <i class="fas fa-spinner fa-spin text-gold" style="font-size: 2rem;"></i>
+                        <p>Loading statistics...</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- My Enrollments -->
+        <section class="section section-alt">
+            <div class="container">
+                <div class="section-title">
+                    <h2>My Enrolled Services</h2>
+                    <p>Track your progress and manage your learning journey</p>
+                </div>
+                
+                <div id="enrollmentsContainer">
+                    <!-- Enrollments will be loaded here -->
+                    <div class="col-12 text-center">
+                        <i class="fas fa-spinner fa-spin text-gold" style="font-size: 2rem;"></i>
+                        <p>Loading enrollments...</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Recommended Services -->
+        <section class="section">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Recommended for You</h2>
+                    <p>Discover new services that match your interests</p>
+                </div>
+                
+                <div class="row" id="recommendedServicesContainer">
+                    <!-- Recommended services will be loaded here -->
+                    <div class="col-12 text-center">
+                        <i class="fas fa-spinner fa-spin text-gold" style="font-size: 2rem;"></i>
+                        <p>Loading recommendations...</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Account Management -->
+        <section class="section section-alt">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Account Management</h2>
+                    <p>Update your profile and manage account settings</p>
+                </div>
+                
+                <div class="row">
+                    <div class="col-6">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3><i class="fas fa-user text-gold mr-2"></i>Profile Information</h3>
+                            </div>
+                            <div class="card-body">
+                                <!-- Flash Messages Container -->
+                                <div id="profileAlertContainer"></div>
+                                
+                                <form id="profileForm">
+                                    <div class="form-group">
+                                        <label for="profile_name">Full Name</label>
+                                        <input type="text" id="profile_name" name="name" class="form-control" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="profile_email">Email Address</label>
+                                        <input type="email" id="profile_email" name="email" class="form-control" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Account Type</label>
+                                        <input type="text" id="profile_role" class="form-control" readonly>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Update Profile</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-6">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3><i class="fas fa-lock text-gold mr-2"></i>Change Password</h3>
+                            </div>
+                            <div class="card-body">
+                                <!-- Flash Messages Container -->
+                                <div id="passwordAlertContainer"></div>
+                                
+                                <form id="passwordForm">
+                                    <div class="form-group">
+                                        <label for="current_password">Current Password</label>
+                                        <input type="password" id="current_password" name="current_password" 
+                                               class="form-control" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="new_password">New Password</label>
+                                        <input type="password" id="new_password" name="new_password" 
+                                               class="form-control" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="confirm_new_password">Confirm New Password</label>
+                                        <input type="password" id="confirm_new_password" name="confirm_new_password" 
+                                               class="form-control" required>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Change Password</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Actions -->
+                <div class="row mt-4">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3><i class="fas fa-bolt text-gold mr-2"></i>Quick Actions</h3>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-3">
+                                        <a href="services.html" class="btn btn-outline btn-lg" style="width: 100%;">
+                                            <i class="fas fa-search d-block mb-2" style="font-size: 2rem;"></i>
+                                            Browse Services
+                                        </a>
+                                    </div>
+                                    <div class="col-3">
+                                        <a href="contact.html" class="btn btn-outline btn-lg" style="width: 100%;">
+                                            <i class="fas fa-envelope d-block mb-2" style="font-size: 2rem;"></i>
+                                            Contact Support
+                                        </a>
+                                    </div>
+                                    <div class="col-3">
+                                        <a href="#" class="btn btn-outline btn-lg" style="width: 100%;" onclick="downloadMaterials()">
+                                            <i class="fas fa-download d-block mb-2" style="font-size: 2rem;"></i>
+                                            Download Materials
+                                        </a>
+                                    </div>
+                                    <div class="col-3">
+                                        <a href="faqs.html" class="btn btn-outline btn-lg" style="width: 100%;">
+                                            <i class="fas fa-question-circle d-block mb-2" style="font-size: 2rem;"></i>
+                                            View FAQs
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Innovaro Global Services</h3>
+                    <p>Delivering Business and Software Solutions with Precision and Passion. We are your trusted partner in digital transformation.</p>
+                    <p><strong>Pioneering IT solutions for the digital future.</strong></p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <a href="index.html">Home</a>
+                    <a href="about.html">About Us</a>
+                    <a href="services.html">Services</a>
+                    <a href="contact.html">Contact</a>
+                    <a href="faqs.html">FAQs</a>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Services</h3>
+                    <a href="services.html">Software Management</a>
+                    <a href="services.html">Business Analysis</a>
+                    <a href="services.html">Project Management</a>
+                    <a href="services.html">IT Training</a>
+                    <a href="services.html">IT Consulting</a>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <ul class="contact-info">
+                        <li><i class="fas fa-map-marker-alt"></i> 35 Bonny Street, Port Harcourt, Rivers State</li>
+                        <li><i class="fas fa-envelope"></i> igs@innovaro.com.ng</li>
+                        <li><i class="fas fa-phone"></i> +234 805 336 7426</li>
+                        <li><i class="fas fa-phone"></i> +234 806 161 5760</li>
+                        <li><i class="fas fa-globe"></i> www.innovaro.com.ng</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 Innovaro Global Services. All rights reserved. | Designed and Developed by Innovaro Global Services</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="js/main.js"></script>
+    <script>
+        let dashboardData = null;
+
+        // Load page content when DOM is ready
+        document.addEventListener('DOMContentLoaded', function() {
+            checkAuthStatusAndRedirect();
+            loadDashboardData();
+            initProfileForm();
+            initPasswordForm();
+        });
+
+        // Check auth status and redirect if not logged in
+        function checkAuthStatusAndRedirect() {
+            fetch('api/auth_status.php')
+            .then(response => response.json())
+            .then(data => {
+                if (!data.success || !data.isLoggedIn) {
+                    window.location.href = 'login.html';
+                } else {
+                    updateNavigationForLoggedInUser(data.user);
+                }
+            })
+            .catch(error => {
+                console.error('Error checking auth status:', error);
+                window.location.href = 'login.html';
+            });
+        }
+
+        // Load dashboard data
+        function loadDashboardData() {
+            fetch('api/dashboard.php')
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    dashboardData = data;
+                    renderDashboard(data);
+                } else {
+                    showError('Failed to load dashboard data');
+                }
+            })
+            .catch(error => {
+                console.error('Error loading dashboard:', error);
+                showError('Error loading dashboard data');
+            });
+        }
+
+        // Render dashboard with loaded data
+        function renderDashboard(data) {
+            renderWelcomeMessage(data.user);
+            renderStats(data.stats);
+            renderEnrollments(data.enrollments);
+            renderRecommendedServices(data.recentServices);
+            populateProfileForm(data.user);
+        }
+
+        // Render welcome message
+        function renderWelcomeMessage(user) {
+            const messageElement = document.getElementById('welcomeMessage');
+            if (messageElement && user) {
+                messageElement.textContent = `Welcome back, ${user.name}! Track your progress, manage enrollments, and explore new opportunities.`;
+            }
+        }
+
+        // Render statistics
+        function renderStats(stats) {
+            const container = document.getElementById('statsContainer');
+            if (!container || !stats) return;
+
+            container.innerHTML = `
+                <div class="col-3">
+                    <div class="card text-center">
+                        <div class="card-body">
+                            <div class="icon text-gold mb-2">
+                                <i class="fas fa-graduation-cap" style="font-size: 2.5rem;"></i>
+                            </div>
+                            <h3 class="text-dark-blue">${stats.totalEnrollments}</h3>
+                            <p>Enrolled Services</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="card text-center">
+                        <div class="card-body">
+                            <div class="icon text-gold mb-2">
+                                <i class="fas fa-certificate" style="font-size: 2.5rem;"></i>
+                            </div>
+                            <h3 class="text-dark-blue">${stats.completedEnrollments}</h3>
+                            <p>Completed Programs</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="card text-center">
+                        <div class="card-body">
+                            <div class="icon text-gold mb-2">
+                                <i class="fas fa-clock" style="font-size: 2.5rem;"></i>
+                            </div>
+                            <h3 class="text-dark-blue">${stats.activeEnrollments}</h3>
+                            <p>In Progress</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="card text-center">
+                        <div class="card-body">
+                            <div class="icon text-gold mb-2">
+                                <i class="fas fa-calendar-alt" style="font-size: 2.5rem;"></i>
+                            </div>
+                            <h3 class="text-dark-blue">${stats.memberSince}</h3>
+                            <p>Member Since</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Render enrollments
+        function renderEnrollments(enrollments) {
+            const container = document.getElementById('enrollmentsContainer');
+            if (!container) return;
+
+            if (!enrollments || enrollments.length === 0) {
+                container.innerHTML = `
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card text-center">
+                                <div class="card-body">
+                                    <i class="fas fa-graduation-cap text-gold" style="font-size: 4rem;"></i>
+                                    <h3 class="mt-3">No Enrollments Yet</h3>
+                                    <p>You haven't enrolled in any services yet. Explore our comprehensive training programs and services to get started.</p>
+                                    <a href="services.html" class="btn btn-primary btn-lg">Browse Services</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                return;
+            }
+
+            let enrollmentsHtml = '<div class="row">';
+            enrollments.forEach(enrollment => {
+                const statusBadge = getStatusBadge(enrollment.status);
+                enrollmentsHtml += `
+                    <div class="col-6">
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <h4>${escapeHtml(enrollment.title)}</h4>
+                                        <small class="text-muted">Category: ${enrollment.category.charAt(0).toUpperCase() + enrollment.category.slice(1)}</small>
+                                    </div>
+                                    <div>${statusBadge}</div>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <p>${truncateText(escapeHtml(enrollment.description), 120)}</p>
+                                <div class="enrollment-meta mt-3">
+                                    <small class="text-muted">
+                                        <i class="fas fa-calendar mr-1"></i>
+                                        Enrolled: ${formatDate(enrollment.enrollment_date)}
+                                    </small>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                ${getEnrollmentActions(enrollment)}
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+            enrollmentsHtml += '</div>';
+            container.innerHTML = enrollmentsHtml;
+        }
+
+        // Get status badge HTML
+        function getStatusBadge(status) {
+            const badges = {
+                'active': '<span class="badge bg-blue text-white" style="padding: 0.5rem 1rem; border-radius: 20px;">In Progress</span>',
+                'completed': '<span class="badge bg-gold text-white" style="padding: 0.5rem 1rem; border-radius: 20px;">Completed</span>',
+                'cancelled': '<span class="badge" style="background: #6B7280; color: white; padding: 0.5rem 1rem; border-radius: 20px;">Cancelled</span>'
+            };
+            return badges[status] || '';
+        }
+
+        // Get enrollment action buttons
+        function getEnrollmentActions(enrollment) {
+            if (enrollment.status === 'active') {
+                return `
+                    <a href="#" class="btn btn-primary" onclick="continueLearning(${enrollment.id})">Continue Learning</a>
+                    <a href="#" class="btn btn-outline ml-2" onclick="viewMaterials(${enrollment.id})">View Materials</a>
+                `;
+            } else if (enrollment.status === 'completed') {
+                return `
+                    <a href="#" class="btn btn-outline" onclick="downloadCertificate(${enrollment.id})">Download Certificate</a>
+                    <a href="#" class="btn btn-outline ml-2" onclick="viewMaterials(${enrollment.id})">View Materials</a>
+                `;
+            }
+            return '';
+        }
+
+        // Render recommended services
+        function renderRecommendedServices(services) {
+            const container = document.getElementById('recommendedServicesContainer');
+            if (!container || !services) return;
+
+            container.innerHTML = '';
+
+            if (services.length === 0) {
+                container.innerHTML = `
+                    <div class="col-12 text-center">
+                        <p>No recommended services available at the moment.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            services.forEach(service => {
+                const serviceHtml = `
+                    <div class="col-4">
+                        <div class="card">
+                            <div class="card-header text-center">
+                                <div class="icon">
+                                    <i class="${service.icon}"></i>
+                                </div>
+                                <h4>${escapeHtml(service.title)}</h4>
+                            </div>
+                            <div class="card-body">
+                                <p>${truncateText(escapeHtml(service.description), 100)}</p>
+                            </div>
+                            <div class="card-footer">
+                                <button class="btn btn-primary" onclick="enrollInService(${service.id})">
+                                    <i class="fas fa-plus mr-2"></i>Enroll Now
+                                </button>
+                                <a href="services.html" class="btn btn-outline ml-2">Learn More</a>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                container.insertAdjacentHTML('beforeend', serviceHtml);
+            });
+        }
+
+        // Populate profile form
+        function populateProfileForm(user) {
+            if (!user) return;
+
+            const nameField = document.getElementById('profile_name');
+            const emailField = document.getElementById('profile_email');
+            const roleField = document.getElementById('profile_role');
+
+            if (nameField) nameField.value = user.name || '';
+            if (emailField) emailField.value = user.email || '';
+            if (roleField) roleField.value = user.role ? user.role.charAt(0).toUpperCase() + user.role.slice(1) : '';
+        }
+
+        // Initialize profile form
+        function initProfileForm() {
+            const profileForm = document.getElementById('profileForm');
+            if (profileForm) {
+                profileForm.addEventListener('submit', handleProfileUpdate);
+            }
+        }
+
+        // Initialize password form
+        function initPasswordForm() {
+            const passwordForm = document.getElementById('passwordForm');
+            if (passwordForm) {
+                passwordForm.addEventListener('submit', handlePasswordChange);
+            }
+        }
+
+        // Handle profile update
+        function handleProfileUpdate(e) {
+            e.preventDefault();
+            // Implementation would go here - for now, show placeholder
+            showAlertInContainer('profileAlertContainer', 'info', 'Profile update feature coming soon!');
+        }
+
+        // Handle password change
+        function handlePasswordChange(e) {
+            e.preventDefault();
+            // Implementation would go here - for now, show placeholder
+            showAlertInContainer('passwordAlertContainer', 'info', 'Password change feature coming soon!');
+        }
+
+        // Show alert in specific container
+        function showAlertInContainer(containerId, type, message) {
+            const container = document.getElementById(containerId);
+            if (!container) return;
+
+            container.innerHTML = `
+                <div class="alert alert-${type}">
+                    <i class="fas fa-info-circle mr-2"></i>${message}
+                </div>
+            `;
+
+            // Auto-remove after 5 seconds
+            setTimeout(() => {
+                container.innerHTML = '';
+            }, 5000);
+        }
+
+        // Placeholder functions for enrollment actions
+        function continueLearning(enrollmentId) {
+            alert('Continue learning feature coming soon!');
+        }
+
+        function viewMaterials(enrollmentId) {
+            alert('View materials feature coming soon!');
+        }
+
+        function downloadCertificate(enrollmentId) {
+            alert('Certificate download feature coming soon!');
+        }
+
+        function downloadMaterials() {
+            alert('Materials download feature coming soon!');
+        }
+
+        // Show error message
+        function showError(message) {
+            const container = document.querySelector('.hero .container');
+            if (container) {
+                container.innerHTML = `
+                    <div class="hero-content text-center">
+                        <h1><i class="fas fa-exclamation-triangle text-gold mr-3"></i>Error</h1>
+                        <p class="slogan">${message}</p>
+                        <div class="mt-4">
+                            <a href="index.html" class="btn btn-primary">Go Home</a>
+                            <button class="btn btn-outline ml-2" onclick="loadDashboardData()">Try Again</button>
+                        </div>
+                    </div>
+                `;
+            }
+        }
+
+        // Format date helper
+        function formatDate(dateString) {
+            if (!dateString) return '';
+            const date = new Date(dateString);
+            return date.toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+        }
+    </script>
+</body>
+</html>
