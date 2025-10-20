@@ -16,7 +16,7 @@ $faqs = $faqManager->getAllFAQs();
     <meta name="keywords" content="FAQ, questions, answers, IT services, training, consulting, Innovaro Global Services">
     
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="assets/images/logo.png">
     
     <!-- CSS -->
     <link rel="stylesheet" href="css/style.css">

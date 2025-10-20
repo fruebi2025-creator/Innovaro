@@ -20,7 +20,7 @@ $additionalServices = $serviceManager->getServicesByCategory('additional');
     <meta name="keywords" content="IT services, software management, business analysis, project management, AI, cybersecurity, cloud computing, Nigeria">
     
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="assets/images/logo.png">
     
     <!-- CSS -->
     <link rel="stylesheet" href="css/style.css">

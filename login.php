@@ -16,7 +16,7 @@ if (is_logged_in()) {
     <meta name="description" content="Login to your Innovaro Global Services account to access our services and manage your enrollments.">
     
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="assets/images/logo.png">
     
     <!-- CSS -->
     <link rel="stylesheet" href="css/style.css">

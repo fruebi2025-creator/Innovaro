@@ -171,6 +171,7 @@ header {
 }
 
 .btn-primary:hover {
+    color: white;
     background-color: #D97706;
     transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(245, 158, 11, 0.3);

@@ -17,7 +17,7 @@ $additionalServices = array_slice($serviceManager->getServicesByCategory('additi
     <meta name="keywords" content="IT solutions, software development, business analysis, project management, digital transformation, Nigeria">
     
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="assets/images/logo.png">
     
     <!-- CSS -->
     <link rel="stylesheet" href="css/style.css">

@@ -12,7 +12,7 @@ require_once 'includes/config.php';
     <meta name="keywords" content="IT company, digital transformation, innovation, technology solutions, Nigeria">
     
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="assets/images/logo.png">
     
     <!-- CSS -->
     <link rel="stylesheet" href="css/style.css">

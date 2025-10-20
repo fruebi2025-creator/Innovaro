@@ -16,7 +16,7 @@ if (is_logged_in()) {
     <meta name="description" content="Create your Innovaro Global Services account to access our comprehensive IT training programs and services.">
     
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="assets/images/logo.png">
     
     <!-- CSS -->
     <link rel="stylesheet" href="css/style.css">
