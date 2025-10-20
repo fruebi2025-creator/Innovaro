@@ -1,0 +1,337 @@
+<?php
+require_once 'includes/config.php';
+require_once 'includes/functions.php';
+
+$serviceManager = new ServiceManager();
+$coreServices = $serviceManager->getServicesByCategory('core');
+$additionalServices = array_slice($serviceManager->getServicesByCategory('additional'), 0, 6);
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Innovaro Global Services - Delivering Business and Software Solutions with Precision and Passion</title>
+    <meta name="description" content="Innovaro Global Services offers comprehensive IT solutions including Software Management, Business Analysis, Project Management, and cutting-edge technology services.">
+    <meta name="keywords" content="IT solutions, software development, business analysis, project management, digital transformation, Nigeria">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo">
+                    <i class="fas fa-code text-gold"></i>
+                    Innovaro Global Services
+                </div>
+                
+                <ul class="nav-menu">
+                    <li><a href="index.php" class="active">Home</a></li>
+                    <li><a href="about.php">About</a></li>
+                    <li><a href="services.php">Services</a></li>
+                    <li><a href="contact.php">Contact</a></li>
+                    <li><a href="faqs.php">FAQs</a></li>
+                    <?php if (is_logged_in()): ?>
+                        <li><a href="dashboard.php">Dashboard</a></li>
+                        <li><a href="php/logout.php">Logout</a></li>
+                    <?php endif; ?>
+                </ul>
+                
+                <div class="nav-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                
+                <?php if (!is_logged_in()): ?>
+                <div class="auth-buttons">
+                    <a href="login.php" class="btn btn-secondary">Login</a>
+                    <a href="register.php" class="btn btn-primary">Sign Up</a>
+                </div>
+                <?php else: ?>
+                <div class="auth-buttons">
+                    <span class="text-gold">Welcome, <?php echo htmlspecialchars($_SESSION['user_name']); ?>!</span>
+                </div>
+                <?php endif; ?>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1>Innovaro Global Services</h1>
+                    <p class="slogan">Delivering Business and Software Solutions with Precision and Passion</p>
+                    
+                    <div class="services-highlight">
+                        <div class="service-item">
+                            <i class="fas fa-cogs"></i>
+                            <h3>Software Management</h3>
+                            <p>Comprehensive lifecycle management</p>
+                        </div>
+                        <div class="service-item">
+                            <i class="fas fa-chart-line"></i>
+                            <h3>Business Analysis</h3>
+                            <p>Expert optimization strategies</p>
+                        </div>
+                        <div class="service-item">
+                            <i class="fas fa-tasks"></i>
+                            <h3>Project Management</h3>
+                            <p>Professional delivery solutions</p>
+                        </div>
+                    </div>
+                    
+                    <div class="hero-actions mt-5">
+                        <a href="services.php" class="btn btn-primary btn-lg mr-3">Explore Our Services</a>
+                        <a href="contact.php" class="btn btn-secondary btn-lg">Get Started</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Preview Section -->
+        <section class="section">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Who We Are</h2>
+                    <p>Pioneering IT solutions for the digital future</p>
+                </div>
+                
+                <div class="row">
+                    <div class="col-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <h3>Our Mission</h3>
+                                <p>Innovaro Global Services is a pioneering IT company dedicated to reshaping the digital landscape through innovative solutions across multiple domains. We combine technical expertise with business acumen to deliver solutions that drive real value.</p>
+                                <p>Our commitment to precision and passion ensures that every project we undertake meets the highest standards of quality and excellence.</p>
+                                <a href="about.php" class="btn btn-outline">Learn More About Us</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <h3>Why Choose Us?</h3>
+                                <ul style="list-style-type: none; padding: 0;">
+                                    <li style="margin-bottom: 1rem;"><i class="fas fa-check-circle text-gold mr-2"></i> Expert team with years of experience</li>
+                                    <li style="margin-bottom: 1rem;"><i class="fas fa-check-circle text-gold mr-2"></i> Cutting-edge technology solutions</li>
+                                    <li style="margin-bottom: 1rem;"><i class="fas fa-check-circle text-gold mr-2"></i> Tailored solutions for your needs</li>
+                                    <li style="margin-bottom: 1rem;"><i class="fas fa-check-circle text-gold mr-2"></i> 24/7 support and maintenance</li>
+                                    <li style="margin-bottom: 1rem;"><i class="fas fa-check-circle text-gold mr-2"></i> Competitive pricing and value</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Core Services Section -->
+        <section class="section section-alt">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Our Core Services</h2>
+                    <p>Comprehensive solutions for your business success</p>
+                </div>
+                
+                <div class="row">
+                    <?php foreach ($coreServices as $service): ?>
+                    <div class="col-4">
+                        <div class="card">
+                            <div class="card-header text-center">
+                                <div class="icon">
+                                    <i class="<?php echo getServiceIcon($service['category']); ?>"></i>
+                                </div>
+                                <h3><?php echo htmlspecialchars($service['title']); ?></h3>
+                            </div>
+                            <div class="card-body">
+                                <p><?php echo htmlspecialchars($service['description']); ?></p>
+                            </div>
+                            <div class="card-footer">
+                                <?php if (is_logged_in()): ?>
+                                    <button class="btn btn-primary" onclick="enrollInService(<?php echo $service['id']; ?>)">
+                                        Enroll Now
+                                    </button>
+                                <?php else: ?>
+                                    <a href="login.php" class="btn btn-outline">Login to Enroll</a>
+                                <?php endif; ?>
+                            </div>
+                        </div>
+                    </div>
+                    <?php endforeach; ?>
+                </div>
+            </div>
+        </section>
+
+        <!-- Additional Services Section -->
+        <section class="section">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Additional Services</h2>
+                    <p>Expanding your possibilities with advanced technology</p>
+                </div>
+                
+                <div class="row">
+                    <?php foreach ($additionalServices as $service): ?>
+                    <div class="col-4">
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="icon">
+                                    <i class="<?php echo getServiceIcon($service['category']); ?>"></i>
+                                </div>
+                                <h4><?php echo htmlspecialchars($service['title']); ?></h4>
+                            </div>
+                            <div class="card-body">
+                                <p><?php echo truncateText($service['description'], 120); ?></p>
+                            </div>
+                        </div>
+                    </div>
+                    <?php endforeach; ?>
+                </div>
+                
+                <div class="text-center mt-5">
+                    <a href="services.php" class="btn btn-primary btn-lg">View All Services</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Statistics Section -->
+        <section class="section section-alt">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Our Impact</h2>
+                    <p>Numbers that speak to our success</p>
+                </div>
+                
+                <div class="row text-center">
+                    <div class="col-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="icon text-gold mb-3">
+                                    <i class="fas fa-users" style="font-size: 3rem;"></i>
+                                </div>
+                                <h3 class="text-dark-blue">500+</h3>
+                                <p>Happy Clients</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="icon text-gold mb-3">
+                                    <i class="fas fa-project-diagram" style="font-size: 3rem;"></i>
+                                </div>
+                                <h3 class="text-dark-blue">1000+</h3>
+                                <p>Projects Completed</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="icon text-gold mb-3">
+                                    <i class="fas fa-award" style="font-size: 3rem;"></i>
+                                </div>
+                                <h3 class="text-dark-blue">50+</h3>
+                                <p>Awards Won</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="icon text-gold mb-3">
+                                    <i class="fas fa-clock" style="font-size: 3rem;"></i>
+                                </div>
+                                <h3 class="text-dark-blue">5+</h3>
+                                <p>Years Experience</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Call to Action Section -->
+        <section class="section" style="background: linear-gradient(135deg, #1E40AF 0%, #3B82F6 100%); color: white;">
+            <div class="container text-center">
+                <h2 style="color: white;">Ready to Transform Your Business?</h2>
+                <p style="font-size: 1.2rem; margin-bottom: 2rem; color: #FCD34D;">
+                    Let's discuss how we can help you achieve your digital transformation goals.
+                </p>
+                <div class="hero-actions">
+                    <a href="contact.php" class="btn btn-primary btn-lg mr-3">Get in Touch</a>
+                    <a href="services.php" class="btn btn-secondary btn-lg">Browse Services</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Innovaro Global Services</h3>
+                    <p>Delivering Business and Software Solutions with Precision and Passion. We are your trusted partner in digital transformation.</p>
+                    <p><strong>Pioneering IT solutions for the digital future.</strong></p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <a href="index.php">Home</a>
+                    <a href="about.php">About Us</a>
+                    <a href="services.php">Services</a>
+                    <a href="contact.php">Contact</a>
+                    <a href="faqs.php">FAQs</a>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Services</h3>
+                    <a href="services.php">Software Management</a>
+                    <a href="services.php">Business Analysis</a>
+                    <a href="services.php">Project Management</a>
+                    <a href="services.php">IT Training</a>
+                    <a href="services.php">IT Consulting</a>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <ul class="contact-info">
+                        <li><i class="fas fa-map-marker-alt"></i> 35 Bonny Street, Port Harcourt, Rivers State</li>
+                        <li><i class="fas fa-envelope"></i> igs@innovaro.com.ng</li>
+                        <li><i class="fas fa-phone"></i> +234 805 336 7426</li>
+                        <li><i class="fas fa-phone"></i> +234 806 161 5760</li>
+                        <li><i class="fas fa-globe"></i> www.innovaro.com.ng</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 Innovaro Global Services. All rights reserved. | Designed and Developed by Innovaro Global Services</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="js/main.js"></script>
+</body>
+</html>
